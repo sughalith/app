@@ -33,6 +33,7 @@ public class Event {
   private BigDecimal price;
   private boolean active;
   private EventType type;
+  private String city;
 
 }
 
