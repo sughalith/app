@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {MouseEvent} from '@agm/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {EventService} from '../_services/eventService';
+import {first} from 'rxjs/internal/operators';
 
 
 declare var google: any;
@@ -38,6 +40,7 @@ export class MapComponent implements OnInit {
   initLat = 54.3439;
   initLng = 18.6406;
   markerToAdd: Marker;
+  events: Event[] = [];
   ableToAdd = true;
 
   markers: Marker[] = [
@@ -65,18 +68,20 @@ export class MapComponent implements OnInit {
       description: 'JAZDA',
       draggable: true
     }
-  ]
+  ];
 
 
   constructor(private route: ActivatedRoute,
+              private eventService: EventService,
               private router: Router) {
   }
 
   ngOnInit(): void {
+    this.getAllEvents();
   }
 
   clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`)
+    console.log(`clicked the marker: ${label || index}`);
   }
 
   redirectEventDetails(id: number, xlat: number, xlon: number) {
@@ -86,7 +91,6 @@ export class MapComponent implements OnInit {
       this.router.navigate(['/eventPanel', id]);
     }
   }
-
 
   mapClicked($event: MouseEvent) {
     if (this.ableToAdd) {
@@ -102,5 +106,11 @@ export class MapComponent implements OnInit {
 
   markerDragEnd(m: Marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
+  }
+
+  private getAllEvents() {
+    this.eventService.getAll().pipe(first()).subscribe(events => {
+      this.events = events;
+    });
   }
 }
