@@ -1,5 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {routing} from './app.routing';
 
 import {AppComponent} from './app.component';
 import {MapComponent} from './map/map.component';
@@ -46,6 +47,7 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,8 @@ import {
     MapComponent,
     LoginComponent,
     RegisterComponent,
-    EventComponent
+    EventComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +97,7 @@ import {
     MatTooltipModule,
     MatTreeModule,
     FormsModule,
+    routing,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAaidD-ftX0Wy__fWgSKfcUUO-Jfu34QBg'
     })

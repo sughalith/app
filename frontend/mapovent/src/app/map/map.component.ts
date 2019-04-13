@@ -1,14 +1,16 @@
-import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
-import {AgmMap, GoogleMapsAPIWrapper, MapsAPILoader} from '@agm/core';
-import {EventObject} from '../_models/event';
+import {Component, OnInit} from '@angular/core';
+import {MouseEvent} from '@agm/core';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 declare var google: any;
 
 interface Marker {
+  id: number;
   lat: number;
   lng: number;
   label?: string;
+  description?: string;
   draggable: boolean;
 }
 
@@ -32,98 +34,69 @@ interface Location {
 })
 export class MapComponent implements OnInit {
 
-  eventList: EventObject[] = [];
-  event1: EventObject = new EventObject(51.678418, 8.809007);
-  event2: EventObject = new EventObject(8.809007, 51.678418);
+  initZoom = 10;
+  initLat = 54.3439;
+  initLng = 18.6406;
+  markerToAdd: Marker;
+  ableToAdd = true;
 
-  geocoder: any;
-  public location: Location = {
-    lat: 51.678418,
-    lng: 7.809007,
-    marker: {
-      lat: 51.678418,
-      lng: 7.809007,
+  markers: Marker[] = [
+    {
+      id: 1,
+      lat: 54.673858,
+      lng: 18.815982,
+      label: '2',
+      description: 'TEST',
       draggable: true
     },
-    zoom: 5
-  };
-
-  @ViewChild(AgmMap) map: AgmMap;
-
-
-  constructor(public mapsApiLoader: MapsAPILoader,
-              private zone: NgZone,
-              private wrapper: GoogleMapsAPIWrapper) {
-    this.mapsApiLoader = mapsApiLoader;
-    this.zone = zone;
-    this.wrapper = wrapper;
-    this.mapsApiLoader.load().then(() => {
-      this.geocoder = new google.maps.Geocoder();
-    });
-
-  }
-
-  ngOnInit() {
-    this.location.marker.draggable = true;
-    this.eventList.push(this.event1);
-    this.eventList.push(this.event2);
-  }
-
-  markerDragEnd(m: any, $event: any) {
-    this.location.marker.lat = m.coords.lat;
-    this.location.marker.lng = m.coords.lng;
-    console.log('lat', m.coords.lat);
-    console.log('lng', m.coords.lng);
-    this.findAddressByCoordinates();
-  }
-
-  findAddressByCoordinates() {
-    this.geocoder.geocode({
-      'location': {
-        lat: this.location.marker.lat,
-        lng: this.location.marker.lng
-      }
-    }, (results, status) => {
-      this.decomposeAddressComponents(results);
-    });
-  }
-
-  decomposeAddressComponents(addressArray) {
-    if (addressArray.length === 0) {
-      return false;
+    {
+      id: 2,
+      lat: 54.373858,
+      lng: 18.215982,
+      label: '1',
+      description: 'JAZDA',
+      draggable: false
+    },
+    {
+      id: 3,
+      lat: 54.723858,
+      lng: 18.895982,
+      label: '3',
+      description: 'JAZDA',
+      draggable: true
     }
-    const address = addressArray[0].address_components;
+  ]
 
-    for (const element of address) {
-      if (element.length === 0 && !element['types']) {
-        continue;
-      }
 
-      if (element['types'].indexOf('street_number') > -1) {
-        this.location.address_level_1 = element['long_name'];
-        continue;
-      }
-      if (element['types'].indexOf('route') > -1) {
-        this.location.address_level_1 += ', ' + element['long_name'];
-        continue;
-      }
-      if (element['types'].indexOf('locality') > -1) {
-        this.location.address_level_2 = element['long_name'];
-        continue;
-      }
-      if (element['types'].indexOf('administrative_area_level_1') > -1) {
-        this.location.address_state = element['long_name'];
-        continue;
-      }
-      if (element['types'].indexOf('country') > -1) {
-        this.location.address_country = element['long_name'];
-        continue;
-      }
-      if (element['types'].indexOf('postal_code') > -1) {
-        this.location.address_zip = element['long_name'];
-        continue;
-      }
+  constructor(private route: ActivatedRoute,
+              private router: Router) {
+  }
+
+  ngOnInit(): void {
+  }
+
+  clickedMarker(label: string, index: number) {
+    console.log(`clicked the marker: ${label || index}`)
+  }
+
+  redirectEventDetails(id: number) {
+    this.router.navigate(['/eventPanel']);
+  }
+
+
+  mapClicked($event: MouseEvent) {
+    if (this.ableToAdd) {
+      this.markers.push({
+        id: this.markers.length,
+        lat: $event.coords.lat,
+        lng: $event.coords.lng,
+        draggable: true
+      });
+      this.ableToAdd = false;
     }
   }
 
+  markerDragEnd(m: Marker, $event: MouseEvent) {
+    console.log('dragEnd', m, $event);
+  }
 }
