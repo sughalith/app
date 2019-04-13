@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
@@ -9,6 +10,7 @@ import { EventComponent } from './event/event.component';
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {AgmCoreModule} from "@agm/core";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -46,6 +48,10 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
+import { EventListComponent } from './event-list/event-list.component';
+import { EventCreateComponent } from './event-create/event-create.component';
+import { FilterComponent } from './filter/filter.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +59,11 @@ import {
     MapComponent,
     LoginComponent,
     RegisterComponent,
-    EventComponent
+    EventComponent,
+    EventListComponent,
+    EventCreateComponent,
+    FilterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +104,7 @@ import {
     MatTooltipModule,
     MatTreeModule,
     FormsModule,
+    BrowserAnimationsModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAaidD-ftX0Wy__fWgSKfcUUO-Jfu34QBg'
     })
@@ -134,7 +145,8 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    NgbModule
   ],
   bootstrap: [AppComponent]
 })
