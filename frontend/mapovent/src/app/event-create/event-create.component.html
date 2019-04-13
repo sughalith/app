@@ -1,3 +1,43 @@
-<p>
-  event-create works!
-</p>
+<form>
+  <div class="form-group">
+    <label for="title">Tytuł</label>
+    <input class="form-control" id="title">
+  </div>
+  <div class="form-group">
+    <label for="title">Opis</label>
+    <textarea class="form-control" id="description"></textarea>
+  </div>
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Data rozpoczęcia">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker1" placeholder="Data zakończenia">
+      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+      <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div class="form-group">
+    <label for="number">Cena</label>
+    <input type="number" class="form-control" id="number">
+  </div>
+  <div class="form-group">
+    <label for="city">Miasto</label>
+    <input class="form-control" id="city">
+  </div>
+  <div class="form-group">
+    <!--<mat-form-field>
+      <mat-select placeholder="Typ sportu" [(ngModel)]="" name="sport">
+        <mat-option *ngFor="let sport of sportKinds" [value]="sport.id">
+          {{sport.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>-->
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
