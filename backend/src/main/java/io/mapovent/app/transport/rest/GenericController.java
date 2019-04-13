@@ -1,4 +1,10 @@
 package io.mapovent.app.transport.rest;
 
-public class GenericController {
+import io.mapovent.app.domain.user.entity.User;
+
+public abstract class GenericController {
+
+  protected User getCurrentUser() {
+    return new User();
+  }
 }
