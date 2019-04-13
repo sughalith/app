@@ -16,6 +16,7 @@
 
 # IDEs and editors
 /.idea
+target
 
 # misc
 /.sass-cache
