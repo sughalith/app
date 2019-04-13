@@ -24,9 +24,7 @@ public class Event {
   private String description;
   @NotBlank
   private String title;
-  @NotBlank
   private double lat;
-  @NotBlank
   private double lon;
   private LocalDate startDate;
   private LocalDate endDate;
