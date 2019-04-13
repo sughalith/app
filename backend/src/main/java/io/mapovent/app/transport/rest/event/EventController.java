@@ -33,7 +33,7 @@ public class EventController extends GenericController implements CrudController
 
   @PostMapping()
   public String create(Event entity) {
-    Event event = Event.builder().id("1").build();
+    Event event = Event.builder().description("123123").build();
     return eventService.create(event);
   }
 

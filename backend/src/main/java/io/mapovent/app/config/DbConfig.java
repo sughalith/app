@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
-@EnableMongoRepositories(basePackages = {"io.mapovent.app.domain.event.dao"})
+@EnableMongoRepositories(basePackages = {"io.mapovent.app.domain.repository"})
 public class DbConfig extends AbstractMongoConfiguration {
 
   @Value("${spring.data.mongodb.user}")
