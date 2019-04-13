@@ -1,6 +1,7 @@
 package io.mapovent.app.transport.rest;
 
 import io.mapovent.app.domain.helper.FilterElement;
+import io.mapovent.app.domain.helper.entity.ValidationException;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -12,7 +13,7 @@ public interface CrudController<T> {
 
   ResponseEntity<List<T>> find(Optional<List<FilterElement>> filterBy);
 
-  ResponseEntity<String> create(T entity);
+  ResponseEntity<String> create(T entity) throws ValidationException;
 
   ResponseEntity<T> update(String id, T entity);
 
