@@ -1,6 +1,6 @@
 import {Component, NgZone, OnInit, ViewChild} from '@angular/core';
 import {AgmMap, GoogleMapsAPIWrapper, MapsAPILoader} from '@agm/core';
-import {Test} from "../_models/test";
+import {EventObject} from '../_models/event';
 
 
 declare var google: any;
@@ -32,14 +32,9 @@ interface Location {
 })
 export class MapComponent implements OnInit {
 
-  lat = 51.678418;
-  lng = 7.809007;
-
-  testList: Test[] = [
-    { x: 51.678418, y: 7.809007 },
-    { x: 50.678418, y: 8.809007 },
-    { x: 52.678418, y: 9.809007 }
-  ];
+  eventList: EventObject[] = [];
+  event1: EventObject = new EventObject(51.678418, 8.809007);
+  event2: EventObject = new EventObject(8.809007, 51.678418);
 
   geocoder: any;
   public location: Location = {
@@ -65,17 +60,20 @@ export class MapComponent implements OnInit {
     this.mapsApiLoader.load().then(() => {
       this.geocoder = new google.maps.Geocoder();
     });
+
   }
 
   ngOnInit() {
     this.location.marker.draggable = true;
+    this.eventList.push(this.event1);
+    this.eventList.push(this.event2);
   }
 
   markerDragEnd(m: any, $event: any) {
     this.location.marker.lat = m.coords.lat;
     this.location.marker.lng = m.coords.lng;
-    console.log("lat", m.coords.lat)
-    console.log("lng", m.coords.lng)
+    console.log('lat', m.coords.lat);
+    console.log('lng', m.coords.lng);
     this.findAddressByCoordinates();
   }
 
@@ -95,8 +93,6 @@ export class MapComponent implements OnInit {
       return false;
     }
     const address = addressArray[0].address_components;
-
-    console.log("TEST", this.lat)
 
     for (const element of address) {
       if (element.length === 0 && !element['types']) {
