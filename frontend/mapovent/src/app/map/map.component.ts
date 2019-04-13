@@ -79,15 +79,19 @@ export class MapComponent implements OnInit {
     console.log(`clicked the marker: ${label || index}`)
   }
 
-  redirectEventDetails(id: number) {
-    this.router.navigate(['/eventPanel']);
+  redirectEventDetails(id: number, xlat: number, xlon: number) {
+    if (id === -1) {
+      this.router.navigate(['/eventCreatePanel'], {queryParams: {lat: xlat, lon: xlon}});
+    } else {
+      this.router.navigate(['/eventPanel', id]);
+    }
   }
 
 
   mapClicked($event: MouseEvent) {
     if (this.ableToAdd) {
       this.markers.push({
-        id: this.markers.length,
+        id: -1,
         lat: $event.coords.lat,
         lng: $event.coords.lng,
         draggable: true

@@ -13,9 +13,11 @@ const appRoutes: Routes = [
 
   {path: 'registerPanel', component: RegisterComponent},
 
-  {path: 'eventPanel', component: EventComponent},
+  {path: 'eventCreatePanel', component: EventComponent}, // todo
 
-  {path: 'mainPanel', component: MainComponent},
+  {path: 'eventPanel/:lat', component: EventComponent},
+
+  {path: 'mainPanel/:id', component: MainComponent},
 
 
   // otherwise redirect to home
