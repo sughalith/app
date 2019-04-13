@@ -1,14 +1,14 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import { MapComponent } from './map/map.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { EventComponent } from './event/event.component';
-import {CommonModule} from "@angular/common";
-import {FormsModule} from "@angular/forms";
-import {AgmCoreModule} from "@agm/core";
+import {AppComponent} from './app.component';
+import {MapComponent} from './map/map.component';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {EventComponent} from './event/event.component';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
+import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {
   MatAutocompleteModule,
   MatBadgeModule,
@@ -98,7 +98,7 @@ import {
       apiKey: 'AIzaSyAaidD-ftX0Wy__fWgSKfcUUO-Jfu34QBg'
     })
   ],
-  providers: [],
+  providers: [GoogleMapsAPIWrapper],
   exports: [
     MatAutocompleteModule,
     MatBadgeModule,
@@ -138,4 +138,5 @@ import {
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
