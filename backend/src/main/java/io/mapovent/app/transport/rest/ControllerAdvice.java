@@ -1,6 +1,7 @@
 package io.mapovent.app.transport.rest;
 
 import com.mongodb.MongoException;
+import io.mapovent.app.domain.helper.entity.ValidationException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
@@ -33,4 +34,8 @@ public class ControllerAdvice {
         return new ResponseEntity<>(e, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(value = {ValidationException.class})
+    protected ResponseEntity<Object> handleValidationException(ValidationException ex, WebRequest request) {
+        return new ResponseEntity<>(ex.getObjectErrorList(), HttpStatus.BAD_REQUEST);
+    }
 }
