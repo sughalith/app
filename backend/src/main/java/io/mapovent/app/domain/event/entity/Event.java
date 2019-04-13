@@ -27,4 +27,11 @@ public class Event {
   private LocalDate startDate;
   private LocalDate endDate;
   private BigDecimal price;
+  private boolean active;
+  private EventType type;
+
+}
+
+enum EventType{
+  RUN, GYM, YOGA, CYCLING, WALKING, SKATING
 }

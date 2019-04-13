@@ -1,5 +1,6 @@
 package io.mapovent.app.transport.rest.event;
 
+import com.mongodb.MongoException;
 import io.mapovent.app.domain.event.entity.Event;
 import io.mapovent.app.domain.event.service.EventService;
 import io.mapovent.app.domain.helper.FilterElement;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/event")
+@RequestMapping(value = "/api/event")
 public class EventController extends GenericController implements CrudController<Event> {
 
   private final EventService eventService;
@@ -35,7 +36,7 @@ public class EventController extends GenericController implements CrudController
   }
 
   @PostMapping()
-  public ResponseEntity<String> create(Event entity) {
+  public ResponseEntity<String> create(@RequestBody Event entity) {
     try {
       return new ResponseEntity<>(eventService.create(entity), HttpStatus.CREATED);
     } catch (Exception e) {
@@ -43,20 +44,26 @@ public class EventController extends GenericController implements CrudController
     }
   }
 
-  public ResponseEntity<Event> update(String id, Event entity) {
+  @PutMapping(value = "/{id}")
+  public ResponseEntity<Event> update(@PathVariable("id") String id, @RequestBody Event entity) {
     try {
       return new ResponseEntity<>(eventService.update(id, entity), HttpStatus.OK);
-    } catch (Exception e) {
+    } catch (MongoException e) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
   }
 
-  public ResponseEntity delete(String id) {
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity delete(@PathVariable String id) {
     try {
       eventService.delete(id);
       return new ResponseEntity(HttpStatus.OK);
-    } catch (Exception e) {
+    } catch (MongoException e) {
       return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
+  }
+  @GetMapping(value = "/findByUser")
+  public ResponseEntity<List<Event>> findByUser(){
+    return new ResponseEntity<>(eventService.findByUser(getCurrentUser()), HttpStatus.OK);
   }
 }
