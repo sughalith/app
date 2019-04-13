@@ -6,6 +6,9 @@ import { MapComponent } from './map/map.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { EventComponent } from './event/event.component';
+import {CommonModule} from "@angular/common";
+import {FormsModule} from "@angular/forms";
+import {AgmCoreModule} from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -16,7 +19,12 @@ import { EventComponent } from './event/event.component';
     EventComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    CommonModule,
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAaidD-ftX0Wy__fWgSKfcUUO-Jfu34QBg'
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
