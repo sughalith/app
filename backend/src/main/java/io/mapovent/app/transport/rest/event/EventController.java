@@ -5,7 +5,6 @@ import io.mapovent.app.domain.event.service.EventService;
 import io.mapovent.app.domain.helper.FilterElement;
 import io.mapovent.app.transport.rest.CrudController;
 import io.mapovent.app.transport.rest.GenericController;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,6 @@ public class EventController extends GenericController implements CrudController
 
   private final EventService eventService;
 
-  @Autowired
   public EventController(EventService eventService) {
     this.eventService = eventService;
   }

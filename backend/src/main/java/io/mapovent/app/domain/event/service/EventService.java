@@ -1,12 +1,11 @@
 package io.mapovent.app.domain.event.service;
 
+import io.mapovent.app.domain.event.entity.Event;
 import io.mapovent.app.domain.helper.FilterElement;
 import io.mapovent.app.domain.helper.QueryService;
 import io.mapovent.app.domain.repository.EventRepository;
-import io.mapovent.app.domain.event.entity.Event;
 import io.mapovent.app.domain.repository.sequencegenerator.SequenceGeneratorService;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,6 @@ public class EventService {
   private final QueryService queryService;
   private final MongoTemplate mongoTemplate;
 
-  @Autowired
   public EventService(EventRepository eventRepository, SequenceGeneratorService sequenceGeneratorService,
                       QueryService queryService, MongoTemplate mongoTemplate) {
     this.eventRepository = eventRepository;
