@@ -1,5 +1,6 @@
 package io.mapovent.app.transport.rest.user;
 
+import io.mapovent.app.domain.helper.FilterElement;
 import io.mapovent.app.domain.user.entity.User;
 import io.mapovent.app.domain.user.service.UserService;
 import io.mapovent.app.transport.rest.CrudController;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -26,14 +28,14 @@ public class UserController extends GenericController implements CrudController<
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @GetMapping
-    public ResponseEntity<List<User>> find(List<String> filterBy) {
+    public ResponseEntity<List<User>> find(Optional<List<FilterElement>> filterBy) {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+
     @PostMapping
-    public ResponseEntity<User> create(User entity) {
-        return new ResponseEntity(HttpStatus.OK);
+    public ResponseEntity<String> create(User entity) {
+        return new ResponseEntity("1", HttpStatus.OK);
     }
 
     @PutMapping
