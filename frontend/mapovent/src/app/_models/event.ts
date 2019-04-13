@@ -9,6 +9,7 @@ export class EventObject {
   price: number;
   active: boolean;
   type: string;
+  city: string;
 
 
   constructor(lat: number, lon: number) {
