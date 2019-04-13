@@ -6,4 +6,5 @@ export class User {
   password: string;
   email: string;
   active: boolean;
+  events: [any];
 }
