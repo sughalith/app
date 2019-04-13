@@ -1,5 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {routing} from './app.routing';
 
 import {AppComponent} from './app.component';
@@ -47,7 +49,10 @@ import {
   MatTooltipModule,
   MatTreeModule,
 } from '@angular/material';
-import { MainComponent } from './main/main.component';
+import {EventListComponent} from './event-list/event-list.component';
+import {EventCreateComponent} from './event-create/event-create.component';
+import {HeaderComponent} from './header/header.component';
+import {MainComponent} from './main/main.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +61,9 @@ import { MainComponent } from './main/main.component';
     LoginComponent,
     RegisterComponent,
     EventComponent,
+    EventListComponent,
+    EventCreateComponent,
+    HeaderComponent,
     MainComponent
   ],
   imports: [
@@ -97,50 +105,55 @@ import { MainComponent } from './main/main.component';
     MatTooltipModule,
     MatTreeModule,
     FormsModule,
+    BrowserAnimationsModule,
     routing,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAaidD-ftX0Wy__fWgSKfcUUO-Jfu34QBg'
     })
   ],
   providers: [GoogleMapsAPIWrapper],
-  exports: [
-    MatAutocompleteModule,
-    MatBadgeModule,
-    MatBottomSheetModule,
-    MatButtonModule,
-    MatButtonToggleModule,
-    MatCardModule,
-    MatCheckboxModule,
-    MatChipsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatDialogModule,
-    MatDividerModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatMenuModule,
-    MatNativeDateModule,
-    MatPaginatorModule,
-    MatProgressBarModule,
-    MatProgressSpinnerModule,
-    MatRadioModule,
-    MatRippleModule,
-    MatSelectModule,
-    MatSidenavModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatSnackBarModule,
-    MatSortModule,
-    MatTableModule,
-    MatTabsModule,
-    MatToolbarModule,
-    MatTooltipModule,
-    MatTreeModule
-  ],
-  bootstrap: [AppComponent]
+  exports:
+    [
+      MatAutocompleteModule,
+      MatBadgeModule,
+      MatBottomSheetModule,
+      MatButtonModule,
+      MatButtonToggleModule,
+      MatCardModule,
+      MatCheckboxModule,
+      MatChipsModule,
+      MatStepperModule,
+      MatDatepickerModule,
+      MatDialogModule,
+      MatDividerModule,
+      MatExpansionModule,
+      MatGridListModule,
+      MatIconModule,
+      MatInputModule,
+      MatListModule,
+      MatMenuModule,
+      MatNativeDateModule,
+      MatPaginatorModule,
+      MatProgressBarModule,
+      MatProgressSpinnerModule,
+      MatRadioModule,
+      MatRippleModule,
+      MatSelectModule,
+      MatSidenavModule,
+      MatSliderModule,
+      MatSlideToggleModule,
+      MatSnackBarModule,
+      MatSortModule,
+      MatTableModule,
+      MatTabsModule,
+      MatToolbarModule,
+      MatTooltipModule,
+      MatTreeModule,
+      NgbModule
+    ],
+  bootstrap:
+    [AppComponent]
 })
+
 export class AppModule {
 }
