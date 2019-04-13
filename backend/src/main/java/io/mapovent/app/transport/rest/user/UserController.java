@@ -57,11 +57,7 @@ public class UserController extends GenericController implements CrudController<
 
   @DeleteMapping(value = "/{id}")
   public ResponseEntity delete(@PathVariable String id) {
-    try {
-      userService.delete(id);
-      return new ResponseEntity(HttpStatus.OK);
-    } catch (MongoException e) {
-      return new ResponseEntity(HttpStatus.NOT_FOUND);
-    }
+    userService.delete(id);
+    return new ResponseEntity(HttpStatus.OK);
   }
 }

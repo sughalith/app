@@ -55,15 +55,12 @@ public class EventController extends GenericController implements CrudController
 
   @DeleteMapping(value = "/{id}")
   public ResponseEntity delete(@PathVariable String id) {
-    try {
-      eventService.delete(id);
-      return new ResponseEntity(HttpStatus.OK);
-    } catch (MongoException e) {
-      return new ResponseEntity(HttpStatus.NOT_FOUND);
-    }
+    eventService.delete(id);
+    return new ResponseEntity(HttpStatus.OK);
   }
+
   @GetMapping(value = "/findByUser")
-  public ResponseEntity<List<Event>> findByUser(){
+  public ResponseEntity<List<Event>> findByUser() {
     return new ResponseEntity<>(eventService.findByUser(getCurrentUser()), HttpStatus.OK);
   }
 }

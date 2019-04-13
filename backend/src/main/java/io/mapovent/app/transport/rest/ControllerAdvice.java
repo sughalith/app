@@ -2,7 +2,6 @@ package io.mapovent.app.transport.rest;
 
 import com.mongodb.MongoException;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
