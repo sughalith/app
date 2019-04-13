@@ -1,4 +1,4 @@
-package io.mapovent.app.domain.event.entity;
+package io.mapovent.app.domain.helper.entity;
 
 public class Views {
 

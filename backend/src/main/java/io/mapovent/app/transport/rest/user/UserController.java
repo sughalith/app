@@ -1,5 +1,6 @@
 package io.mapovent.app.transport.rest.user;
 
+import com.mongodb.MongoException;
 import io.mapovent.app.domain.helper.FilterElement;
 import io.mapovent.app.domain.user.entity.User;
 import io.mapovent.app.domain.user.service.UserService;
@@ -13,39 +14,54 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController extends GenericController implements CrudController<User> {
 
-    private UserService userService;
+  private UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+  public UserController(UserService userService) {
+    this.userService = userService;
+  }
+
+  @GetMapping
+  @RequestMapping("/{id}")
+  public ResponseEntity<User> find(@PathVariable("id") String id) {
+    Optional<User> user = userService.find(id);
+    return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(()
+      -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+  }
+
+  @GetMapping
+  public ResponseEntity<List<User>> find(@RequestParam Optional<List<FilterElement>> filterBy) {
+    return new ResponseEntity<>(userService.find(filterBy), HttpStatus.OK);
+  }
+
+
+  @PostMapping
+  public ResponseEntity<String> create(@RequestBody User entity) {
+    try {
+      return new ResponseEntity<>(userService.create(entity), HttpStatus.CREATED);
+    } catch (Exception e) {
+      return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
+  }
 
-    @GetMapping
-    @RequestMapping("/{id}")
-    public ResponseEntity<User> find(@PathVariable("id") String id) {
-        return new ResponseEntity(HttpStatus.OK);
+  @PutMapping(value = "/{id}")
+  public ResponseEntity<User> update(@PathVariable("id") String id, @RequestBody User entity) {
+    try {
+      return new ResponseEntity<>(userService.update(id, entity), HttpStatus.OK);
+    } catch (MongoException e) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+  }
 
-    public ResponseEntity<List<User>> find(Optional<List<FilterElement>> filterBy) {
-        return new ResponseEntity(HttpStatus.OK);
+  @DeleteMapping(value = "/{id}")
+  public ResponseEntity delete(@PathVariable String id) {
+    try {
+      userService.delete(id);
+      return new ResponseEntity(HttpStatus.OK);
+    } catch (MongoException e) {
+      return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
-
-
-    @PostMapping
-    public ResponseEntity<String> create(User entity) {
-        return new ResponseEntity("1", HttpStatus.OK);
-    }
-
-    @PutMapping
-    public ResponseEntity<User> update(String id, User entity) {
-        return new ResponseEntity(HttpStatus.OK);
-    }
-
-    @DeleteMapping
-    public ResponseEntity delete(String id) {
-
-        return new ResponseEntity(HttpStatus.OK);
-    }
+  }
 }

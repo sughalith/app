@@ -1,6 +1,7 @@
 package io.mapovent.app.domain.event.entity;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import io.mapovent.app.domain.helper.entity.Views;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -26,4 +27,11 @@ public class Event {
   private LocalDate startDate;
   private LocalDate endDate;
   private BigDecimal price;
+  private boolean active;
+  private EventType type;
+
+}
+
+enum EventType{
+  RUN, GYM, YOGA, CYCLING, WALKING, SKATING
 }

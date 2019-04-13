@@ -1,10 +1,13 @@
 package io.mapovent.app.domain.event.service;
 
+import com.mongodb.MongoException;
+import io.mapovent.app.domain.CrudService;
 import io.mapovent.app.domain.event.entity.Event;
 import io.mapovent.app.domain.helper.FilterElement;
 import io.mapovent.app.domain.helper.QueryService;
 import io.mapovent.app.domain.repository.EventRepository;
 import io.mapovent.app.domain.repository.sequencegenerator.SequenceGeneratorService;
+import io.mapovent.app.domain.user.entity.User;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Query;
@@ -15,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @Log4j2
-public class EventService {
+public class EventService implements CrudService<Event> {
   private final EventRepository eventRepository;
   private final SequenceGeneratorService sequenceGeneratorService;
   private final QueryService queryService;
@@ -50,18 +53,23 @@ public class EventService {
   public Event update(String id, Event entity) {
     Optional<Event> event = eventRepository.findById(id);
     if (event.isPresent()) {
-      return eventRepository.save(entity);
+      Event newEntity = entity.toBuilder().id(event.get().getId()).build();
+      return eventRepository.save(newEntity);
     } else {
-      //TODO change to exception throw
-      return null;
+      throw new MongoException("Not found");
     }
   }
 
   public void delete(String id) {
-    try {
-      eventRepository.deleteById(id);
-    } catch (Exception e) {
-      log.error(e);
+    Optional<Event> event = eventRepository.findById(id);
+    if (event.isPresent()) {
+      eventRepository.delete(event.get());
+    } else {
+      throw new MongoException("Not found");
     }
+  }
+
+  public List<Event> findByUser(User user) {
+    return user.getEventList();
   }
 }
