@@ -51,7 +51,6 @@ import {
 } from '@angular/material';
 import {EventListComponent} from './event-list/event-list.component';
 import {EventCreateComponent} from './event-create/event-create.component';
-import {FilterComponent} from './filter/filter.component';
 import {HeaderComponent} from './header/header.component';
 import {MainComponent} from './main/main.component';
 
@@ -64,7 +63,6 @@ import {MainComponent} from './main/main.component';
     EventComponent,
     EventListComponent,
     EventCreateComponent,
-    FilterComponent,
     HeaderComponent,
     MainComponent
   ],
