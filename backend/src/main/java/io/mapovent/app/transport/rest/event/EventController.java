@@ -1,13 +1,12 @@
 package io.mapovent.app.transport.rest.event;
 
 import io.mapovent.app.domain.event.entity.Event;
+import io.mapovent.app.domain.event.service.EventService;
 import io.mapovent.app.domain.user.entity.User;
 import io.mapovent.app.transport.rest.CrudController;
 import io.mapovent.app.transport.rest.GenericController;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,19 +14,27 @@ import java.util.List;
 @RequestMapping(value = "/event")
 public class EventController extends GenericController implements CrudController<Event> {
 
+  private final EventService eventService;
 
-  @RequestMapping(value = "/{id}")
+  @Autowired
+  public EventController(EventService eventService) {
+    this.eventService = eventService;
+  }
+
+  @GetMapping(value = "/{id}")
   public Event find(@PathVariable("id") String id) {
     return null;
   }
 
-  @RequestMapping()
+  @GetMapping()
   public List<Event> find(@RequestParam List<String> filterBy) {
     return null;
   }
 
+  @PostMapping()
   public String create(Event entity) {
-    return null;
+    Event event = Event.builder().id("1").build();
+    return eventService.create(event);
   }
 
   public void update(String id, Event entity) {
