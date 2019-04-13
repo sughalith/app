@@ -14,6 +14,6 @@ public interface CrudController<T> {
 
   ResponseEntity<T> update(String id, T entity);
 
-  void delete(String id);
+  ResponseEntity delete(String id);
 
 }
