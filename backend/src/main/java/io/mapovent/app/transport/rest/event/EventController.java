@@ -3,7 +3,9 @@ package io.mapovent.app.transport.rest.event;
 import com.mongodb.MongoException;
 import io.mapovent.app.domain.event.entity.Event;
 import io.mapovent.app.domain.event.service.EventService;
+import io.mapovent.app.domain.event.validator.EventValidator;
 import io.mapovent.app.domain.helper.FilterElement;
+import io.mapovent.app.domain.helper.entity.ValidationException;
 import io.mapovent.app.transport.rest.CrudController;
 import io.mapovent.app.transport.rest.GenericController;
 import org.springframework.http.HttpStatus;
@@ -18,9 +20,11 @@ import java.util.Optional;
 public class EventController extends GenericController implements CrudController<Event> {
 
   private final EventService eventService;
+  private final EventValidator eventValidator;
 
-  public EventController(EventService eventService) {
+  public EventController(EventService eventService, EventValidator eventValidator) {
     this.eventService = eventService;
+    this.eventValidator = eventValidator;
   }
 
   @GetMapping(value = "/{id}")
@@ -36,12 +40,9 @@ public class EventController extends GenericController implements CrudController
   }
 
   @PostMapping()
-  public ResponseEntity<String> create(@RequestBody Event entity) {
-    try {
+  public ResponseEntity<String> create(@RequestBody Event entity) throws ValidationException {
+      validate(entity, eventValidator);
       return new ResponseEntity<>(eventService.create(entity), HttpStatus.CREATED);
-    } catch (Exception e) {
-      return new ResponseEntity<>(HttpStatus.CONFLICT);
-    }
   }
 
   @PutMapping(value = "/{id}")

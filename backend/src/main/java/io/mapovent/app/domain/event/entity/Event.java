@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -19,10 +20,13 @@ import java.time.LocalDate;
 public class Event {
   @Id
   private String id;
-  @JsonView(Views.Internal.class)
+  @NotBlank
   private String description;
+  @NotBlank
   private String title;
+  @NotBlank
   private double lat;
+  @NotBlank
   private double lon;
   private LocalDate startDate;
   private LocalDate endDate;
