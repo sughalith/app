@@ -1,20 +1,29 @@
 package io.mapovent.app.domain.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import io.mapovent.app.domain.event.entity.Event;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Builder
 @Getter
+@Builder(toBuilder = true)
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonView
+@EqualsAndHashCode
+@Document(collection = "user")
 public class User {
 
-    private final String name;
-    private final String surname;
-    private final String company;
-    private final List<Event> eventList;
-    private final String password;
-    private final String mail;
-    private final Boolean active;
+    @Id
+    private String id;
+    private String name;
+    private String surname;
+    private String company;
+    private List<Event> eventList;
+    private String password;
+    private String mail;
+    private Boolean active;
 }
