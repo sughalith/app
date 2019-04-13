@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {routing} from './app.routing';
-
+import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 import {MapComponent} from './map/map.component';
 import {LoginComponent} from './login/login.component';
@@ -11,6 +11,7 @@ import {RegisterComponent} from './register/register.component';
 import {EventComponent} from './event/event.component';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {EventService} from './_services/eventService';
 import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {
   MatAutocompleteModule,
@@ -67,6 +68,7 @@ import {MainComponent} from './main/main.component';
     MainComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     CommonModule,
     MatAutocompleteModule,
@@ -111,7 +113,8 @@ import {MainComponent} from './main/main.component';
       apiKey: 'AIzaSyAaidD-ftX0Wy__fWgSKfcUUO-Jfu34QBg'
     })
   ],
-  providers: [GoogleMapsAPIWrapper],
+  providers: [GoogleMapsAPIWrapper,
+    EventService],
   exports:
     [
       MatAutocompleteModule,
