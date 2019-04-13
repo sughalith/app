@@ -8,7 +8,7 @@ import { RegisterComponent } from './register/register.component';
 import { EventComponent } from './event/event.component';
 import {CommonModule} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {AgmCoreModule} from "@agm/core";
+import {AgmCoreModule, GoogleMapsAPIWrapper} from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -26,7 +26,7 @@ import {AgmCoreModule} from "@agm/core";
       apiKey: 'AIzaSyAaidD-ftX0Wy__fWgSKfcUUO-Jfu34QBg'
     })
   ],
-  providers: [],
+  providers: [GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
