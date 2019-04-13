@@ -4,6 +4,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {EventComponent} from './event/event.component';
 import {MainComponent} from './main/main.component';
+import {EventCreateComponent} from './event-create/event-create.component';
 
 
 const appRoutes: Routes = [
@@ -13,7 +14,7 @@ const appRoutes: Routes = [
 
   {path: 'registerPanel', component: RegisterComponent},
 
-  {path: 'eventCreatePanel', component: EventComponent}, // todo
+  {path: 'eventCreatePanel', component: EventCreateComponent},
 
   {path: 'eventPanel/:lat', component: EventComponent},
 
