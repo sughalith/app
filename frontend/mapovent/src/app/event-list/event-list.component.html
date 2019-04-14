@@ -24,16 +24,19 @@
       <a class="nav-link" href="#">Bieganie</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Rower</a>
+      <a class="nav-link" href="#">Siłownia</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Rolki</a>
+      <a class="nav-link" href="#">Joga</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Rzucanie pniem</a>
+      <a class="nav-link" href="#">Jazda na rowerze</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Piwkowanie</a>
+      <a class="nav-link" href="#">Spacer</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Skating</a>
     </li>
   </ul>
 
@@ -54,15 +57,3 @@
     </li>
   </ul>
 </nav>
-
-<div style="margin: 0">
-  <div *ngFor="let m of events;">
-    <div class="col-12 col-sm-6 col-md-6">
-      <span [(ngModel)]="event.title"></span>
-      <span [(ngModel)]="event.description"></span>
-    </div>
-    <div class="col-12 col-sm-6 col-md-6">
-      <span [(ngModel)]="event.price"></span>
-    </div>
-  </div>
-</div>
