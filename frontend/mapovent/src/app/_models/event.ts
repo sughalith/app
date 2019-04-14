@@ -1,6 +1,6 @@
 export class EventObject {
   id: number;
-  descreption: string;
+  description: string;
   title: string;
   lat: number;
   lon: number;
