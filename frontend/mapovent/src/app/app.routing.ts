@@ -16,7 +16,7 @@ const appRoutes: Routes = [
 
   {path: 'eventCreatePanel', component: EventCreateComponent},
 
-  {path: 'eventPanel/:lat', component: EventComponent},
+  {path: 'eventPanel/:id', component: EventComponent},
 
   {path: 'mainPanel', component: MainComponent},
 

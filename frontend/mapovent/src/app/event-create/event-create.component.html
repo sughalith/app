@@ -21,7 +21,7 @@
                     </mat-form-field>
                     <mat-form-field class="example-form" style="margin-left: 50px;">
                       <input matInput placeholder="Opis" [formControl]="descriptionFormControl"
-                             [(ngModel)]="event.descreption">
+                             [(ngModel)]="event.description">
                       <mat-error *ngIf="descriptionFormControl.hasError('required')">
                         To pole jest <strong>wymagane</strong>
                       </mat-error>
