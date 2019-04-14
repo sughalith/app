@@ -45,30 +45,30 @@ export class MapComponent implements OnInit {
   marker: Marker;
 
   markers: Marker[] = [
-    {
-      id: 1,
-      lat: 54.673858,
-      lng: 18.815982,
-      label: '2',
-      description: 'TEST',
-      draggable: true
-    },
-    {
-      id: 2,
-      lat: 54.373858,
-      lng: 18.215982,
-      label: '1',
-      description: 'JAZDA',
-      draggable: false
-    },
-    {
-      id: 3,
-      lat: 54.723858,
-      lng: 18.895982,
-      label: '3',
-      description: 'JAZDA',
-      draggable: true
-    }
+    // {
+    //   id: 1,
+    //   lat: 54.673858,
+    //   lng: 18.815982,
+    //   label: '2',
+    //   description: 'TEST',
+    //   draggable: true
+    // },
+    // {
+    //   id: 2,
+    //   lat: 54.373858,
+    //   lng: 18.215982,
+    //   label: '1',
+    //   description: 'JAZDA',
+    //   draggable: false
+    // },
+    // {
+    //   id: 3,
+    //   lat: 54.723858,
+    //   lng: 18.895982,
+    //   label: '3',
+    //   description: 'JAZDA',
+    //   draggable: true
+    // }
   ];
 
 
