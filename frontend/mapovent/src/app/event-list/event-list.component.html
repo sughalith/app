@@ -61,8 +61,8 @@
 <div style="margin: 0">
   <mat-list-item *ngFor="let event of events">
     <h4 mat-line class="alert alert-primary" style="margin-bottom: 0">{{event.title}}</h4>
-    <p mat-line class="alert alert-primary"> {{event.description}} <button mat-icon-button (click)="redirectEventDetails(m.id, m.lat, m.lng)" color="primary">
-      <mat-icon>help</mat-icon>
+    <p mat-line class="alert alert-primary"> {{event.description}} <button mat-icon-button (click)="onRowClicked(event.id)" color="primary">
+      <mat-icon>loupe</mat-icon>
     </button> </p>
     <mat-divider></mat-divider>
   </mat-list-item>
