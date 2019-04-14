@@ -1,11 +1,14 @@
 import {Component, OnInit} from '@angular/core';
 import {MouseEvent} from '@agm/core';
 import {ActivatedRoute, Router} from '@angular/router';
+import {EventService} from '../_services/eventService';
+import {first} from 'rxjs/internal/operators';
+import {EventObject} from '../_models/event';
 
 
 declare var google: any;
 
-interface Marker {
+class Marker {
   id: number;
   lat: number;
   lng: number;
@@ -37,8 +40,9 @@ export class MapComponent implements OnInit {
   initZoom = 10;
   initLat = 54.3439;
   initLng = 18.6406;
-  markerToAdd: Marker;
+  events: EventObject[] = [];
   ableToAdd = true;
+  marker: Marker;
 
   markers: Marker[] = [
     {
@@ -65,29 +69,35 @@ export class MapComponent implements OnInit {
       description: 'JAZDA',
       draggable: true
     }
-  ]
+  ];
 
 
   constructor(private route: ActivatedRoute,
+              private eventService: EventService,
               private router: Router) {
   }
 
   ngOnInit(): void {
+    this.getAllEvents();
   }
+
 
   clickedMarker(label: string, index: number) {
-    console.log(`clicked the marker: ${label || index}`)
+    console.log(`clicked the marker: ${label || index}`);
   }
 
-  redirectEventDetails(id: number) {
-    this.router.navigate(['/eventPanel']);
+  redirectEventDetails(id: number, xlat: number, xlon: number) {
+    if (id === -1) {
+      this.router.navigate(['/eventCreatePanel'], {queryParams: {lat: xlat, lon: xlon}});
+    } else {
+      this.router.navigate(['/eventPanel', id]);
+    }
   }
-
 
   mapClicked($event: MouseEvent) {
     if (this.ableToAdd) {
       this.markers.push({
-        id: this.markers.length,
+        id: -1,
         lat: $event.coords.lat,
         lng: $event.coords.lng,
         draggable: true
@@ -98,5 +108,22 @@ export class MapComponent implements OnInit {
 
   markerDragEnd(m: Marker, $event: MouseEvent) {
     console.log('dragEnd', m, $event);
+  }
+
+  private getAllEvents() {
+    this.eventService.getAll().pipe(first()).subscribe(events => {
+      this.events = events;
+      this.events.forEach((event: EventObject) => {
+          this.marker = new Marker();
+          this.marker.lng = event.lon;
+          this.marker.lat = event.lat;
+          this.marker.id = event.id;
+          this.marker.description = event.descreption;
+          this.marker.label = event.title;
+          this.marker.draggable = false;
+          this.markers.push(this.marker);
+        }
+      );
+    });
   }
 }

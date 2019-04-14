@@ -16,12 +16,10 @@
     (dragEnd)="markerDragEnd(m, $event)">
 
     <agm-info-window>
-      <strong>{{m.description}}
-
-        <button mat-icon-button (click)="redirectEventDetails(m.id)" color="primary">
+      <strong>{{m.id}}
+        <button mat-icon-button (click)="redirectEventDetails(m.id, m.lat, m.lng)" color="primary">
           <mat-icon>help</mat-icon>
         </button>
-
       </strong>
     </agm-info-window>
 
