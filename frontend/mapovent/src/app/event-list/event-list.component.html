@@ -24,30 +24,33 @@
       <a class="nav-link" href="#">Bieganie</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Rower</a>
+      <a class="nav-link" href="#">Siłownia</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Rolki</a>
+      <a class="nav-link" href="#">Joga</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Rzucanie pniem</a>
+      <a class="nav-link" href="#">Jazda na rowerze</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">Piwkowanie</a>
+      <a class="nav-link" href="#">Spacer</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Skating</a>
     </li>
   </ul>
 
   <ul class="nav justify-content-end col-12 col-sm-6 col-md-6" style="margin: 0">
     <li class="nav-item" style="margin-right: 10px">
       <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Wybierz datę">
+        <input matInput [matDatepicker]="picker" placeholder="Wybierz datę od">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
     </li>
     <li class="nav-item">
       <mat-form-field>
-        <input matInput [matDatepicker]="picker1" placeholder="Wybierz datę">
+        <input matInput [matDatepicker]="picker1" placeholder="Wybierz datę do">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
@@ -56,10 +59,11 @@
 </nav>
 
 <div style="margin: 0">
-
   <mat-list-item *ngFor="let event of events">
-    <h4 mat-line>{{event.title}}</h4>
-    <p mat-line> {{event.description}} </p>
+    <h4 mat-line class="alert alert-primary" style="margin-bottom: 0">{{event.title}}</h4>
+    <p mat-line class="alert alert-primary"> {{event.description}} <button mat-icon-button (click)="redirectEventDetails(m.id, m.lat, m.lng)" color="primary">
+      <mat-icon>help</mat-icon>
+    </button> </p>
     <mat-divider></mat-divider>
   </mat-list-item>
 </div>
