@@ -1,43 +1,49 @@
-<form>
-  <div class="form-group">
-    <label for="title">Tytuł</label>
-    <input class="form-control" id="title">
+<div>
+  <br>
+  <div class="container">
+    <div class="container">
+      <form [formGroup]="eventAddFormGroup">
+        <div fxLayout="row" fxLayoutAlign="center center" class="content">
+          <mat-card class="card">
+            <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column" style="color: black;">
+              <h3>Dodaj event</h3>
+            </mat-card-title>
+            <mat-card-content>
+              <mat-list>
+                <mat-list-item>
+                  <mat-list-item style="margin-top: 25px;">
+                    <mat-form-field class="example-form">
+                      <input matInput placeholder="Tytuł" [formControl]="titleFormControl"
+                             [(ngModel)]="event.title">
+                      <mat-error *ngIf="titleFormControl.hasError('required')">
+                        To pole jest <strong>wymagane</strong>
+                      </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="example-form" style="margin-left: 50px;">
+                      <input matInput placeholder="Opis" [formControl]="descriptionFormControl"
+                             [(ngModel)]="event.descreption">
+                      <mat-error *ngIf="descriptionFormControl.hasError('required')">
+                        To pole jest <strong>wymagane</strong>
+                      </mat-error>
+                    </mat-form-field>
+                  </mat-list-item>
+                </mat-list-item>
+              </mat-list>
+              <button button="submit" type="button" mat-raised-button (click)="redirectTabs()"
+                      style="margin-top: 30px;">
+                <mat-icon>arrow_back</mat-icon>
+                Anuluj
+              </button>
+              <button button="submit" mat-raised-button type="submit"
+                      (click)="createEventAction()"
+                      style="margin-left: 200px; margin-top: 30px;">
+                <mat-icon>save</mat-icon>
+                Dodaj
+              </button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </form>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="title">Opis</label>
-    <textarea class="form-control" id="description"></textarea>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Data rozpoczęcia">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker1" placeholder="Data zakończenia">
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div class="form-group">
-    <label for="number">Cena</label>
-    <input type="number" class="form-control" id="number">
-  </div>
-  <div class="form-group">
-    <label for="city">Miasto</label>
-    <input class="form-control" id="city">
-  </div>
-  <div class="form-group">
-    <!--<mat-form-field>
-      <mat-select placeholder="Typ sportu" [(ngModel)]="" name="sport">
-        <mat-option *ngFor="let sport of sportKinds" [value]="sport.id">
-          {{sport.name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>-->
-  </div>
-
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</div>

@@ -18,7 +18,7 @@ const appRoutes: Routes = [
 
   {path: 'eventPanel/:lat', component: EventComponent},
 
-  {path: 'mainPanel/:id', component: MainComponent},
+  {path: 'mainPanel', component: MainComponent},
 
 
   // otherwise redirect to home

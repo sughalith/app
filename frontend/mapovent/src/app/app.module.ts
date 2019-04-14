@@ -10,7 +10,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {EventComponent} from './event/event.component';
 import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EventService} from './_services/eventService';
 import {AgmCoreModule, GoogleMapsAPIWrapper} from '@agm/core';
 import {
@@ -107,14 +107,17 @@ import {MainComponent} from './main/main.component';
     MatTooltipModule,
     MatTreeModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     routing,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAaidD-ftX0Wy__fWgSKfcUUO-Jfu34QBg'
     })
   ],
-  providers: [GoogleMapsAPIWrapper,
-    EventService],
+  providers: [
+    GoogleMapsAPIWrapper,
+    EventService
+  ],
   exports:
     [
       MatAutocompleteModule,
