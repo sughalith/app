@@ -114,7 +114,7 @@ export class MapComponent implements OnInit {
     this.eventService.getAll().pipe(first()).subscribe(events => {
       this.events = events;
       this.events.forEach((event: EventObject) => {
-        this.marker = new Marker();
+          this.marker = new Marker();
           this.marker.lng = event.lon;
           this.marker.lat = event.lat;
           this.marker.id = event.id;
@@ -122,10 +122,8 @@ export class MapComponent implements OnInit {
           this.marker.label = event.title;
           this.marker.draggable = false;
           this.markers.push(this.marker);
-          console.log('asdas');
         }
       );
-      console.log(this.markers);
     });
   }
 }

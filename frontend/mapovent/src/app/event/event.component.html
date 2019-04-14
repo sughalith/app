@@ -1,29 +1,47 @@
-<p>
-  event works!
-</p>
-
-
-<p>
-  event works!
-</p>
-<p>
-  event works!
-</p>
-<p>
-  event works!
-</p>
-<p>
-  event works!
-</p>
-<p>
-  event works!
-</p>v
-<p>
-  event works!
-</p>v<p>
-  event works!
-</p>
-
-
-
-
+<div>
+  <br>
+  <div class="container">
+    <div class="container">
+      <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row" fxLayoutAlign="space-around center"
+           class="content">
+        <div class="blocks">
+          <button button="submit" type="button" mat-raised-button color="primary" (click)="redirectTabs()">
+            <mat-icon>arrow_back</mat-icon> Powrót do listy
+          </button>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+      <div fxLayout="row" fxLayoutAlign="center center" class="content">
+        <mat-card class="card">
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column" style="color: black;">
+            <h3>Szczegóły eventu</h3>
+          </mat-card-title>
+          <mat-card-content>
+            <mat-list>
+              <mat-list-item>
+                <h4 mat-line><span style="font-weight: bold">Id:</span> {{event?.id}}</h4>
+              </mat-list-item>
+              <mat-list-item>
+                <h4 mat-line><span style="font-weight: bold">title:</span> {{event?.title}}</h4>
+              </mat-list-item>
+              <mat-list-item>
+                <h4 mat-line><span style="font-weight: bold">descreption:</span> {{event?.descreption}}</h4>
+              </mat-list-item>
+              <mat-list-item>
+                <h4 mat-line><span style="font-weight: bold">city:</span> {{event?.city}}</h4>
+              </mat-list-item>
+              <mat-list-item>
+                <h4 mat-line><span style="font-weight: bold">Start date:</span> {{event?.startDate | date : 'dd/MM/yyyy h:mm a'}} </h4>
+              </mat-list-item>
+              <mat-list-item>
+                <h4 mat-line><span style="font-weight: bold">end date:</span> {{event?.endDate | date : 'dd/MM/yyyy h:mm a'}} </h4>
+              </mat-list-item>
+            </mat-list>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
