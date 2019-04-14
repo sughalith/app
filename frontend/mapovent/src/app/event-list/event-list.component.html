@@ -56,7 +56,13 @@
 </nav>
 
 <div style="margin: 0">
-  <p>
-    event-list works!
-  </p>
+  <div *ngFor="let m of events;">
+    <div class="col-12 col-sm-6 col-md-6">
+      <span [(ngModel)]="event.title"></span>
+      <span [(ngModel)]="event.description"></span>
+    </div>
+    <div class="col-12 col-sm-6 col-md-6">
+      <span [(ngModel)]="event.price"></span>
+    </div>
+  </div>
 </div>
