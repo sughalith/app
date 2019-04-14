@@ -12,16 +12,16 @@ export class EventService {
   }
 
   getAll() {
-    return this.http.get<EventObject[]>('http://localhost:8080/api/event');
+    return this.http.get<EventObject[]>('/api/event');
   }
 
   getById(id: number) {
-    return this.http.get<EventObject>(`http://localhost:8080/api/event/` + id);
+    return this.http.get<EventObject>(`/api/event/` + id);
   }
 
   createEvent(event: EventObject) {
     this.isCreated = false;
-    return this.http.post(`http://localhost:8080/api/public/account`, event, {observe: 'response'})
+    return this.http.post(`/api/event`, event, {observe: 'response'})
       .pipe(map(response => {
         this.isCreated = response.status === 200;
       }));

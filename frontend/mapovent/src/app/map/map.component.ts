@@ -118,7 +118,7 @@ export class MapComponent implements OnInit {
           this.marker.lng = event.lon;
           this.marker.lat = event.lat;
           this.marker.id = event.id;
-          this.marker.description = event.descreption;
+          this.marker.description = event.description;
           this.marker.label = event.title;
           this.marker.draggable = false;
           this.markers.push(this.marker);
